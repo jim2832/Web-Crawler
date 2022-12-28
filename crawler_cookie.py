@@ -22,18 +22,18 @@ def getData(url):
 
     #解析原始碼，取得每篇文章的標題
     import bs4
-    root = bs4.BeautifulSoup(data, "html.parser")
-    titles = root.find_all("div", class_ = "title") #尋找所有class = "title" 的 div標籤
+    soup = bs4.BeautifulSoup(data, "html.parser")
+    titles = soup.find_all("div", class_ = "title") #尋找所有class = "title" 的 div標籤
     for title in titles:
         if title.a != None: #若標題有包含a(沒有被刪除)，則印出來
-            if("全家" in title.a):
+            if("騎乘金" in str(title)):
                 print(Fore.RED + title.a.string)
             else:
                 print(title.a.string)
             time.sleep(0.05)
 
     #抓取下一頁的連結
-    next_link = root.find("a", string = "‹ 上頁") #尋找內文是‹ 上頁的a標籤
+    next_link = soup.find("a", string = "‹ 上頁") #尋找內文是‹ 上頁的a標籤
     return next_link["href"]
 
 
