@@ -19,5 +19,5 @@ import bs4
 root = bs4.BeautifulSoup(data, "html.parser")
 titles = root.find_all("div", class_ = "title") #尋找所有class = "title" 的 div標籤
 for title in titles:
-    if title.a != None: #若逼條有包含a(沒有被刪除)，則印出來
+    if title.a != None: #若逼條有包含a(沒有被刪除)，則印出來 #a是一個tag
         print(title.a.string)
